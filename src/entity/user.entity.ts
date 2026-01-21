@@ -1,22 +1,18 @@
 import {
-  Entity,
-  PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
-  OneToMany,
-  ManyToMany,
-  JoinTable,
 } from 'typeorm';
-import { Post } from './post.entity';
-import { Follow } from './follow.entity';
-import { Like } from './like.entity';
-
 
 @Entity('users')
 export class User {
   @PrimaryGeneratedColumn('uuid') // Menggunakan UUID v4
   id: string;
+
+  @Column( )
+  name: string;
 
   @Column({ unique: true })
   username: string;
@@ -50,17 +46,4 @@ export class User {
 
   @UpdateDateColumn()
   updatedAt: Date;
-
-  @OneToMany(() => Post, (post) => post.user)
-  posts: Post[];
-
-  @OneToMany(() => Like, (like) => like.user)
-  likes: Like[];
-
-  @OneToMany(() => Follow, (follow) => follow.following)
-  followers: Follow[];
-
-  // // Orang-orang yang saya ikuti
-  @OneToMany(() => Follow, (follow) => follow.follower)
-  following: Follow[];
 }
