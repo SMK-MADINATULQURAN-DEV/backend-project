@@ -5,6 +5,7 @@
   "compilerOptions": {
     "assets": ["app/mail/templates/**/*"],
     "watchAssets": true,
-    "deleteOutDir": true
+    "deleteOutDir": false
+   
   }
 }

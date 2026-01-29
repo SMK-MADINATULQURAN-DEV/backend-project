@@ -20,9 +20,12 @@ export class User {
   @Column({ unique: true })
   email: string;
 
-  @Column({ select: false })
+  @Column({ select: false, nullable:true })
   password: string;
 
+  //---avatar---!!
+ @Column({ nullable: true,})
+  avatar: string;
   // --- Fitur Verifikasi Email ---
   @Column({ default: false })
   isEmailVerified: boolean;
@@ -31,7 +34,7 @@ export class User {
   emailVerificationToken: string;
 
   // --- Fitur Lupa Password ---
-  @Column({ nullable: true, select: false })
+  @Column({ nullable: true,})
   resetPasswordToken: string;
 
   @Column({ nullable: true, type: 'timestamp', select: false })

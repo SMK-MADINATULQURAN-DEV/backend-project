@@ -9,8 +9,9 @@ export class MailService {
 
   async resendEmailVerifikasi(payload: {
     email: string;
-    token: string;
+    link: string;
     name: string;
+   
   }) {
     await this.mailerService.sendMail({
       to: payload.email, // email tujuan
@@ -19,8 +20,21 @@ export class MailService {
       context: {
         // untuk varibel di template hbs
         email: payload.email,
-        token: payload.token,
+        link: payload.link,
         name: payload.name,
+      },
+    });
+  }
+
+  async lupaPassword(payload: { email: string; otp: string,  expiredTime: string }) {
+    await this.mailerService.sendMail({
+      to: payload.email, // email tujuan
+      subject: 'Lupa Password',
+      template: 'lupa-password', // templae yang digunakan di folder templates
+      context: {
+        // untuk varibel di template hbs
+        otp: payload.otp,
+        expiredTime: payload.expiredTime
       },
     });
   }
