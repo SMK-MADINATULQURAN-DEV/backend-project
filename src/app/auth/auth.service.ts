@@ -32,6 +32,7 @@ export class AuthService {
   async getTokens(userId: string, email: string) {
     const at = await this.jwtService.signAsync(
       {
+        id:userId,
         sub: userId,
         email: email,
       },
@@ -43,6 +44,7 @@ export class AuthService {
 
     const rt = await this.jwtService.signAsync(
       {
+         id:userId,
         sub: userId,
         email: email,
       },

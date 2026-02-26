@@ -2,9 +2,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Posts } from './posts.entity';
+import { Likes } from './likes.entity';
+import { Comments } from './comments.entity';
 
 @Entity('users')
 export class User {
@@ -33,12 +37,32 @@ export class User {
   @Column({ nullable: true, select: false })
   emailVerificationToken: string;
 
+  @Column({ nullable: true, type: "text" })
+  bio: string;
+ 
+  @Column({ nullable: true })
+  sampul: string;
+ 
+  @Column({ nullable: true })
+  location: string;
+
   // --- Fitur Lupa Password ---
   @Column({ nullable: true,})
   resetPasswordToken: string;
 
   @Column({ nullable: true, type: 'timestamp', select: false })
   resetPasswordExpires: Date;
+
+   @OneToMany(() => Posts, (post) => post.user)
+  posts: Posts[];
+ 
+  @OneToMany(() => Likes, (like) => like.user)
+  likes: Likes[];
+
+
+  @OneToMany(() => Comments, (c) => c.user)
+  comments: Comments[];
+ 
 
   // --- Fitur JWT Refresh Token ---
   @Column({ nullable: true, select: false })

@@ -9,6 +9,8 @@ import { UploadController } from './app/upload/upload.controller';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { CloudinaryModule } from './app/cloudinary/cloudinary.module';
+import { ProfileModule } from './app/profile/profile.module';
+import { PostsModule } from './app/posts/posts.module';
 
 @Module({
   imports: [
@@ -28,6 +30,8 @@ import { CloudinaryModule } from './app/cloudinary/cloudinary.module';
     AuthModule,
     MailModule,
     CloudinaryModule,
+    ProfileModule,
+    PostsModule,
     
   ],
   controllers: [AppController, UploadController],
