@@ -6,6 +6,7 @@ import {
   HttpCode,
   HttpStatus,
   Get,
+  Param,
   Query,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
@@ -24,14 +25,12 @@ export class PostController {
   @Post()
   @HttpCode(HttpStatus.CREATED)
   async create(@Body() createPostDto: CreatePostDto) {
-
-    
     return await this.postsService.createPost(createPostDto);
   }
 
-
   @Get('my-posts')
-async getMyPosts(@Query() query: ListQueryDto) {
-  return await this.postsService.getMyPosts(query);
-}
+  async list(@Query() listQueryDto: ListQueryDto) {
+    console.log('quer', listQueryDto);
+    return await this.postsService.getMyPosts(listQueryDto);
+  }
 }

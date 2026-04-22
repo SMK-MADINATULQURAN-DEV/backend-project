@@ -59,6 +59,8 @@ export class PostsService {
 
   async getMyPosts(query: ListQueryDto) {
     const { page = 1, limit = 10 } = query;
+
+    console.log(query)
     const skip = (page - 1) * limit;
 
     try {
@@ -91,4 +93,47 @@ export class PostsService {
       throw new InternalServerErrorException('Gagal mengambil data postingan');
     }
   }
+
+
+  // list random
+
+  // async getRandomFeed(query: PostQueryDto) {
+  //   const { page = 1, limit = 10 } = query;
+  //   const skip = (page - 1) * limit;
+
+  //   // Gunakan ID user atau angka statis sebagai 'seed' agar pagination konsisten
+  //   // Jika ingin benar-benar acak setiap refresh, biarkan kosong: RAND()
+  //   const seed = this.req.user?.id ? parseInt(this.req.user.id.replace(/\D/g, '').substring(0, 5)) : 123;
+
+  //   try {
+  //     const queryBuilder = this.postRepository.createQueryBuilder('post')
+  //       // Load relasi agar data lengkap (User pembuat, Media, Jumlah Like/Comment)
+  //       .leftJoinAndSelect('post.user', 'user')
+  //       .leftJoinAndSelect('post.medias', 'medias')
+  //       .leftJoinAndSelect('post.likes', 'likes')
+  //       .leftJoinAndSelect('post.comments', 'comments')
+        
+  //       // Fungsi Random MySQL: RAND(seed)
+  //       .orderBy(`RAND(${seed})`) 
+  //       .take(limit)
+  //       .skip(skip);
+
+  //     const [data, total] = await queryBuilder.getManyAndCount();
+
+  //     return {
+  //       message: "Success fetch explore feed",
+  //       data,
+  //       meta: {
+  //         totalItems: total,
+  //         itemCount: data.length,
+  //         itemsPerPage: limit,
+  //         totalPages: Math.ceil(total / limit),
+  //         currentPage: Number(page),
+  //       },
+  //     };
+  //   } catch (error) {
+  //     console.error('Error Random Feed:', error);
+  //     throw new InternalServerErrorException('Gagal mengambil feed');
+  //   }
+  // }
 }

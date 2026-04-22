@@ -1,5 +1,10 @@
+import { IsOptional } from 'class-validator';
+
 // post-query.dto.ts
 export class ListQueryDto {
-  page?: number;
-  limit?: number;
+  @IsOptional()
+  page = 1;
+
+  @IsOptional()
+  limit = 10;
 }
