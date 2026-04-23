@@ -11,6 +11,7 @@ import { join } from 'path';
 import { CloudinaryModule } from './app/cloudinary/cloudinary.module';
 import { ProfileModule } from './app/profile/profile.module';
 import { PostsModule } from './app/posts/posts.module';
+import { CommentModule } from './app/comment/comment.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { PostsModule } from './app/posts/posts.module';
     CloudinaryModule,
     ProfileModule,
     PostsModule,
+    CommentModule,
     
   ],
   controllers: [AppController, UploadController],
