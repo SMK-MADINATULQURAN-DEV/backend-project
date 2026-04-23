@@ -7,4 +7,7 @@ export class ListQueryDto {
 
   @IsOptional()
   limit = 10;
+
+  @IsOptional()
+  search = "";
 }

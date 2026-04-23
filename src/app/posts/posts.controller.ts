@@ -33,4 +33,10 @@ export class PostController {
     console.log('quer', listQueryDto);
     return await this.postsService.getMyPosts(listQueryDto);
   }
+
+  @Get('random')
+  async listRandom(@Query() listQueryDto: ListQueryDto) {
+    console.log('quer', listQueryDto);
+    return await this.postsService.getRandomFeed(listQueryDto);
+  }
 }
